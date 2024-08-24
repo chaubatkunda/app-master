@@ -10,6 +10,14 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('App Master'),
+        centerTitle: true,
+      ),
+      body: const Center(
+        child: Text('App Master'),
+      ),
+    );
   }
 }
