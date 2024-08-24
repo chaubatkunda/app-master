@@ -1,22 +1,36 @@
-name: Dart
+name: Build Flutter APK
 
 on:
   push:
-    branches: ["master"]
-  pull_request:
-    branches: ["master"]
+    branches:
+      - main # Atur branch yang akan memicu build
 
 jobs:
-  main:
-    runs-on: macos-latest
+  build:
+    runs-on: ubuntu-latest
+
     steps:
-      - name: Clone repository
-        uses: actions/checkout@v4
-      - name: Set up Flutter
+      # Checkout the code from the repository
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Setup Flutter environment
+      - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: 3.24.1
-      - run: flutter pub get
-      # - run: flutter test
-      - run: flutter build apk
-      # - run: flutter build appbundle
+          flutter-version: "3.0.0" # Sesuaikan dengan versi Flutter yang digunakan
+
+      # Install dependencies
+      - name: Install dependencies
+        run: flutter pub get
+
+      # Build APK
+      - name: Build APK
+        run: flutter build apk --release
+
+      # Archive the APK to upload it as an artifact
+      - name: Upload APK
+        uses: actions/upload-artifact@v3
+        with:
+          name: app-release.apk
+          path: build/app/outputs/flutter-apk/app-release.apk
