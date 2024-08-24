@@ -1,4 +1,4 @@
-name: Build Flutter APK
+name: Dart
 
 on:
   push:
@@ -18,7 +18,7 @@ jobs:
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: "3.0.0" # Sesuaikan dengan versi Flutter yang digunakan
+          flutter-version: "3.24.1" # Sesuaikan dengan versi Flutter yang digunakan
 
       # Install dependencies
       - name: Install dependencies
